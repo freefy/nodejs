@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="login.js"></script>
+</head>
+
+<body>
+  <!-- <input type="text" id="stuNum" name="stuNum" placeholder="学号">
+  <input type="password" id="password" name="password" placeholder="密码">
+  <input type="submit" onclick="login()"> -->
+  <form method="post" action="/login">
+    <input type="text" id="stuNum" name="stuNum" placeholder="学号">
+    <input type="password" id="password" name="password" placeholder="密码">
+    <input type="submit" value="提交">
+  </form>
+  <script>
+    // get方法
+    // function login() {
+    //   var stuNum = document.getElementById("stuNum");
+    //   var password = document.getElementById("password");
+    //   var params = "stuNum=" + stuNum.value + "&password=" + password.value;
+    //   xmlHttp = new XMLHttpRequest();
+    //   xmlHttp.open("GET", "/login?" + params, true);
+    //   xmlHttp.send(null);
+    //   xmlHttp.onreadystatechange = function () {
+    //     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+    //       console.log(xmlHttp.responseText);
+    //     }
+    //   }
+    // }
+    //post方法
+    function login() {
+      var stuNum = document.getElementById("stuNum");
+      var password = document.getElementById("password");
+      var params = "stuNum=" + stuNum.value + "&password=" + password.value;
+      xmlHttp = new XMLHttpRequest();
+      xmlHttp.open("POST", "/login", true);
+      xmlHttp.send(params);
+      xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+          console.log(xmlHttp.responseText);
+          if (xmlHttp.responseText == 'OK') {
+            location.href = "/success.html";
+          } else {
+            location.href = "/error.html";
+          }
+        }
+      }
+    }
+  </script>
+</body>
+
+</html>
